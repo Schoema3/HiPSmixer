@@ -1,10 +1,3 @@
-#include <vector>
-#include <cmath>
-#include <cstdio>
-#include <iostream>
-#include <stdlib.h>     
-#include <time.h>   
-
 #include "cell.h"
 
 class Tree {

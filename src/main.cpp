@@ -1,5 +1,4 @@
 // Compile  clear && make && ./bin/HipsMixer.x 
-
 #include <iostream>
 #include <stdlib.h>     
 #include <time.h>       
@@ -10,17 +9,19 @@
 
 int main(){
 
+	std::cout << "\nProgram Started!" << std::endl;
 	_DEBUG( std::cout << "DEBUG mode is on!" << std::endl; );
 
-	std::vector<double> pointA = {  0.0,  0.0, 0.0 };
-	std::vector<double> pointB = { 1.0, 1.0, 1.0 };
-	std::vector<size_t> meshsize  = { 4,3,2 };
+	std::vector<double> pointA    = { 0.0, 0.0, 0.0 };
+	std::vector<double> pointB    = { 1.0, 1.0, 1.0 };
+	std::vector<size_t> meshsize  = {  12,   2,   3 };
 
 	Mesh *mesh = new Mesh(pointA,pointB,meshsize);
 
-	//mesh->printVTK();
+	mesh->setExampleScalar();
+	mesh->printVTK();
 
-	std::cout << "Program Finished" << std::endl;
+	std::cout << "\nProgram Finished" << std::endl;
 	
 	return 0;
 }
