@@ -35,17 +35,12 @@ class Mesh {
 
 		public:
 
-			// Constructor for 3D HexaHedron cells
-			Mesh_Cell( std::vector< Point > points );
-			
+			Mesh_Cell( std::vector< Point* > points );		
 	};
 
-
-	// 1 Dimensional vector with all points
-	std::vector< Point* > Points;
-
-	// 3 Dimensional Vector of cells
-	std::vector< std::vector< std::vector<Mesh_Cell*> > > cells;
+	// 3 dimensional vectors of points and cells
+	std::vector< std::vector< std::vector< Point*     > > > points;
+	std::vector< std::vector< std::vector< Mesh_Cell* > > > cells;
 
 	int number_of_cells;
 	
@@ -53,7 +48,12 @@ class Mesh {
 public:
 
 	// 1D equally spaced mesh creation Constructor call
-	Mesh(std::vector<double> pointA, std::vector<double> pointB, std::vector<int> meshsize); 
+	Mesh( 
+		std::vector<double> pointA, 
+		std::vector<double> pointB, 
+		std::vector<size_t> meshsize
+	);
 
+	~Mesh();
 	void printVTK();
 };

@@ -1,26 +1,24 @@
+// Compile  clear && make && ./bin/HipsMixer.x 
+
 #include <iostream>
 #include <stdlib.h>     
 #include <time.h>       
 
 #include "debug.h"
+#include "mesh.h"
+#include "tree.h"
 
 int main(){
 
 	_DEBUG( std::cout << "DEBUG mode is on!" << std::endl; );
 
-	size_t numberOfLevels = 3;
-	size_t dimensions     = 3; // 3D problem
+	std::vector<double> pointA = {  0.0,  0.0, 0.0 };
+	std::vector<double> pointB = { 1.0, 1.0, 1.0 };
+	std::vector<size_t> meshsize  = { 4,3,2 };
 
-	//Tree *bintree = new Tree(dimensions,numberOfLevels);
+	Mesh *mesh = new Mesh(pointA,pointB,meshsize);
 
-	//bintree->print();
-	
-
-	for(int i = 0; i<1000; i++){
-	//	bintree->randomSwap();
-	}
-
-	//bintree->print();
+	//mesh->printVTK();
 
 	std::cout << "Program Finished" << std::endl;
 	

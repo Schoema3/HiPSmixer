@@ -35,3 +35,6 @@ lib/*
 
 # Ignore any executables
 bin/*
+
+# Ignore VTK view files
+*.vtk
