@@ -2,58 +2,54 @@
 
 class Mesh {
 
-	struct Point{
+	// Primitive point geometry
+	struct Point {
 		double coordinate_x;
 		double coordinate_y;
 		double coordinate_z;
 		int index;
 	};
 
-	struct Face{
-		std::vector< Point*  > points;
-		std::vector< double  > normal;
-		double area;
-	};
-
+	// Cell geometry
 	class Mesh_Cell: public Cell {
 
-		//Geometric properties of the cell
-		std::vector< Point*  > points;
-		std::vector< double* > centroid; // NA
-		std::vector< Face*   > faces;    // NA
-		
-		bool checkPointConsistency();
-		bool createFaces();
-		bool createCentroid(); 
+		std::vector< Point* > points;
+		Point centroid;
 
 		public:
+			Mesh_Cell();
+			Mesh_Cell(std::vector< Point* > points);	
+			
+			int getVTKType();	
+			std::vector<int> getPoints();
 
-			Mesh_Cell( std::vector< Point* > points);	
-
-			std::vector<int> cellToVtk();
-
-			double test_scalar = 0.0;
+			bool isPointInside(
+				std::vector<double> pointA,
+				std::vector<double> pointB
+			);
 	};
 
+	// Vectors with the geometry points and cells
+	std::vector< Point     > points;
+	std::vector< Mesh_Cell > cells;
 
-	// 3 dimensional vectors of points and cells
-	std::vector< std::vector< std::vector< Point*     > > > points;
-	std::vector< std::vector< std::vector< Mesh_Cell* > > > cells;
-	
-	//std::vector< double > test_vector;
-
-	int number_of_cells;
-	int number_of_points;
+	// Useful for printing VTK file, calculated in constructor
+	int number_of_VTK_Cell_entries;
 
 public:
 
-	// 1D equally spaced mesh creation Constructor call
+	// A Mesh is constructed by providing two points in
+	// space (x,y,z) which define oposing corners of a 
+	// parallelepiped. "meshsize" indicates the number of
+	// Cells in the X Y Z directions.
 	Mesh( 
 		std::vector<double> pointA, 
 		std::vector<double> pointB, 
 		std::vector<size_t> meshsize
 	);
+	
+	std::vector< Cell >* exportMesh();
 
-	void setExampleScalar();
-	void printVTK();
+	std::ostream& toVTK(std::ostream &out);	
+
 };

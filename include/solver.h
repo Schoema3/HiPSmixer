@@ -12,10 +12,22 @@
 #include <string>
 #include <time.h>
 
-class Cell {
+#include "mesh.h"
+//#include "field.h"
+#include "tree.h"
 
-public:
-	virtual ~Cell() = default;
+class Solver {
+
+	Mesh*   mesh;
+	//Fields* fields;
+
+	std::vector< Tree*  > Trees;
+
+	int step;
+
+	public:
+
+		Solver(Mesh* input_mesh);
+
+		void printVTK();
 };
-
-

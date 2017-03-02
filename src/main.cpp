@@ -1,26 +1,23 @@
 // Compile  clear && make && ./bin/HipsMixer.x 
 #include <iostream>
-#include <stdlib.h>     
-#include <time.h>       
+#include <stdlib.h>       
 
 #include "debug.h"
-#include "mesh.h"
-#include "tree.h"
+#include "solver.h"
 
 int main(){
 
 	std::cout << "\nProgram Started!" << std::endl;
 	_DEBUG( std::cout << "DEBUG mode is on!" << std::endl; );
 
-	std::vector<double> pointA    = { 0.0, 0.0, 0.0 };
-	std::vector<double> pointB    = { 1.0, 1.0, 1.0 };
-	std::vector<size_t> meshsize  = {  12,   2,   3 };
+	std::vector<double> pointA    = {   0.0,   0.0,  0.0 };
+	std::vector<double> pointB    = { 100.0, 100.0,  1.0 };
+	std::vector<size_t> meshsize  = {     2,     2,    1 };
 
-	Mesh *mesh = new Mesh(pointA,pointB,meshsize);
+	Mesh mesh     = Mesh(pointA,pointB,meshsize);
+	Solver solver = Solver(&mesh);
 
-	mesh->setExampleScalar();
-	mesh->printVTK();
-
+	solver.printVTK();
 	std::cout << "\nProgram Finished" << std::endl;
 	
 	return 0;

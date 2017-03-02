@@ -1,27 +1,18 @@
-#include "cell.h"
+	#include "cell.h"
 
 class Tree {
 
-	class Tree_Cell: public Cell {
-		public:
-			std::vector<Cell*> children; 
-	};
-
-	std::vector<Tree_Cell*> nodes;
+	std::vector< Cell* >* leaves;
 
 	size_t number_of_levels;
 	size_t number_of_dimensions;
 	size_t children_per_node;
 
-	int  selectOneTargetNode();
-	bool importLeafRow(std::vector<Cell*>  input_leaf_row);
-	bool exportLeafRow(Cell *first_child, Cell *second_child);
-
 public:
 
-	Tree(size_t number_of_dimensions, size_t number_of_levels);
+	Tree(double number_of_dimensions, std::vector< Cell* >* field);
 
-	void createEddyEvent(std::vector<Cell*> field);
+	void createEddyEvent();
 
 };
 
